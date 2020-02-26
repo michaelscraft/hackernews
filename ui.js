@@ -136,7 +136,7 @@ $(async function() {
    * Event Handler for Clicking "submit" link
    */
   $navSubmit.on("click", () =>{
-    hideElements();
+    hideElements($createStoryForm);
     $createStoryForm.slideToggle();
     $allStoriesList.show();
   })
@@ -490,7 +490,7 @@ $(async function() {
 
   /* hide all elements in elementsArr */
 
-  function hideElements() {
+  function hideElements(curr) {
     const elementsArr = [
       $submitForm,
       $allStoriesList,
@@ -503,7 +503,9 @@ $(async function() {
       $favoritedArticles,
       $userProfile
     ];
-    elementsArr.forEach($elem => $elem.hide());
+    elementsArr.forEach($elem => {
+      if($elem !== curr) $elem.hide()
+    });
   }
 
   function showNavForLoggedInUser() {
