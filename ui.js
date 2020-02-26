@@ -104,6 +104,7 @@ $(async function() {
 
     await StoryList.addStory(currentUser,payload)
     printMessage(`${currentUser.name}, your story \"${title}\" has been added`, 'success')
+    $createStoryForm.slideUp().trigger("reset");
     generateStories()
   })
   
@@ -152,8 +153,9 @@ $(async function() {
     $ownStories.show();
   })
   
-  $navUserProfile.on("click", () => {
+  $navUserProfile.on("click", async () => {
     hideElements();
+    await checkIfLoggedIn();
     $userProfile.html(generateUserProfile());
     $userProfile.show();
   })
